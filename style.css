@@ -1,0 +1,362 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+:root {
+    --primary-color: #032541;
+    --secondary-color: #01b4e4;
+    --accent-color: #f5c518;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-color);
+}
+
+/* Search Bar */
+.search-container {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+#search-input {
+    width: 70%;
+    max-width: 800px;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#search-button {
+    padding: 0.8rem 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#search-button:hover {
+    background-color: #ddb100;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Τρεις στήλες ίσου πλάτους */
+    gap: 2rem;
+}
+
+/* Κάθε section θα καταλαμβάνει μία στήλη */
+section.featured, section.popular, section.new-releases {
+    margin-bottom: 1.5rem;
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Τα αποτελέσματα αναζήτησης θα εκτείνονται σε ολόκληρο το πλάτος */
+section.search-results {
+    grid-column: 1 / -1; /* Από την πρώτη στήλη μέχρι την τελευταία */
+    display: none;
+    padding: 1rem 0;
+}
+
+/* Movie Grid */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.movie-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.movie-year {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.movie-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: black;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Movie Details */
+.movie-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.movie-details-content {
+    background-color: white;
+    width: 80%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Επιπρόσθετα στυλ για τις λεπτομέρειες ταινίας */
+.movie-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+    
+.backdrop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(255,255,255,1));
+}
+    
+.movie-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-top: 250px;
+    position: relative;
+    z-index: 1;
+}
+    
+.movie-poster-detail img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+    
+.movie-info-detail h2 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    border-bottom: none;
+}
+    
+.movie-meta {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+    
+.movie-rating-detail {
+    margin-bottom: 1rem;
+}
+    
+.rating-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+    
+.vote-count {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+    
+.movie-tagline {
+    font-style: italic;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+    
+.movie-overview, .movie-credits {
+    margin-bottom: 1.5rem;
+}
+    
+.movie-overview h3, .movie-trailer h3 {
+    margin-bottom: 0.5rem;
+}
+    
+.movie-trailer {
+    margin-top: 2rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Loading indicator */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    main {
+        grid-template-columns: repeat(2, 1fr); /* Δύο στήλες για μεσαίες οθόνες */
+    }
+    
+    section.featured {
+        grid-column: 1 / -1; /* Προτεινόμενες ταινίες σε πλήρες πλάτος */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    nav ul {
+        margin-top: 1rem;
+    }
+    
+    nav ul li {
+        margin-left: 0.7rem;
+    }
+    
+    .search-container {
+        padding: 1rem;
+    }
+    
+    #search-input {
+        width: 70%;
+    }
+    
+    main {
+        grid-template-columns: 1fr; /* Μία στήλη για μικρές οθόνες */
+        padding: 1rem;
+    }
+    
+    section.featured, section.popular, section.new-releases {
+        grid-column: 1; /* Όλα τα sections σε μία στήλη */
+    }
+    
+    .movie-detail-grid {
+        grid-template-columns: 1fr;
+        margin-top: 200px;
+    }
+    
+    .movie-poster-detail {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
