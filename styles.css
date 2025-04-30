@@ -1,0 +1,280 @@
+/* ==========================================================================
+   1. Reset & Base Styles
+   ========================================================================== */
+   *,
+   *::before,
+   *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   
+   html, body {
+     height: 100%;
+   }
+   
+   body {
+     font-family: sans-serif;
+     background: #1e2735;
+     color: #e5e5e5;
+     display: flex;
+     flex-direction: column;
+     line-height: 1.4;
+   }
+   
+   .hidden {
+     display: none !important;
+   }
+   
+   /* ==========================================================================
+      2. Layout Structure
+      ========================================================================== */
+   main {
+     flex: 1 0 auto; /* main takes remaining space */
+   }
+   
+   footer {
+     flex-shrink: 0;  /* stick at bottom */
+     background: #16202c;
+     color: #c0c0c0;
+     text-align: center;
+     padding: 1rem;
+   }
+   
+   /* ==========================================================================
+      3. Header & Navigation
+      ========================================================================== */
+   header {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     padding: 0.5rem 1rem;
+     background: #16202c;
+     gap: 1rem;
+     justify-content: center  ;
+   }
+  
+   header .logo h1 {
+     color: #00b0ff;
+   }
+   
+   nav ul {
+     display: flex;
+     list-style: none;
+     gap: 1rem;
+     background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(43, 75, 82, 1) 31%, rgba(32, 66, 47, 1) 53%, rgba(6, 45, 46, 1) 100%);
+     border-radius: 8px;
+     padding: 0.5rem 1rem; 
+   }
+   
+   .nav-link {
+     color: #c0c0c0;
+     text-decoration: none;
+     padding: 0.2rem 1rem;
+     border-radius: 8px;
+     transition: background 0.2s, color 0.2s;
+   }
+   
+   .nav-link.active,
+   .nav-link:hover {
+     background: #00b0ff;
+     color: #16202c;
+   }
+
+   .top-nav {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+   }
+  
+   
+   /* ==========================================================================
+      4. Search Bar
+      ========================================================================== */
+   .search-container {
+     margin-left: auto;
+     display: flex;
+     align-items: center;
+   }
+   
+   #search-input {
+     padding: 0.5rem;
+     border-radius: 4px;
+     border: none;
+   }
+   
+   #search-button {
+     margin-left: 0.5rem;
+     padding: 0.5rem 1rem;
+     border: none;
+     border-radius: 4px;
+     background: #00b0ff;
+     color: #16202c;
+     cursor: pointer;
+     transition: background 0.2s;
+   }
+   
+   #search-button:hover {
+     background: #0091ea;
+   }
+   
+   /* ==========================================================================
+      5. Movies Grid & Cards
+      ========================================================================== */
+   .movies-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+     gap: 1rem;
+     padding: 1rem;
+   }
+   
+   .movie-card {
+     background: #27303f;
+     border-radius: 6px;
+     overflow: hidden;
+     cursor: pointer;
+     transition: transform 0.2s;
+   }
+   
+   .movie-card:hover {
+     transform: scale(1.03);
+   }
+   
+   .movie-card img {
+     width: 100%;
+     display: block;
+   }
+   
+   .movie-card .info {
+     padding: 0.5rem;
+     text-align: center;
+   }
+   
+   .movie-card .info h3 {
+     font-size: 1rem;
+     margin-bottom: 0.25rem;
+   }
+   
+   .movie-card .info p {
+     font-size: 0.85rem;
+     color: #aaa;
+   }
+   
+   /* ==========================================================================
+      6. Load More Button
+      ========================================================================== */
+   .load-more {
+     display: block;
+     margin: 1rem auto;
+     padding: 0.5rem 1.5rem;
+     background: #00b0ff;
+     color: #16202c;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: background 0.2s;
+   }
+   
+   .load-more:hover {
+     background: #0091ea;
+   }
+   
+   /* ==========================================================================
+      7. Genre Cards (Categories)
+      ========================================================================== */
+   .genre-card {
+     background: #1b2738;
+     border-radius: 6px;
+     padding: 1rem;
+     text-align: center;
+     transition: background 0.2s, color 0.2s;
+   }
+   
+   .genre-card:hover {
+     background: #00b0ff;
+     color: #16202c;
+   }
+   
+   /* ==========================================================================
+      8. Favorites & Poster Container
+      ========================================================================== */
+   .movie-poster-container {
+     position: relative;
+   }
+   
+   .favorite-btn {
+     position: absolute;
+     top: 8px;
+     right: 8px;
+     background: rgba(255,255,255,0.8);
+     border: none;
+     border-radius: 50%;
+     padding: 0.25rem;
+     font-size: 1rem;
+     cursor: pointer;
+     transition: transform 0.2s;
+   }
+   
+   .favorite-btn:hover {
+     transform: scale(1.2);
+   }
+   
+   /* ==========================================================================
+      9. Movie Details Modal
+      ========================================================================== */
+   #movie-details {
+     position: fixed;
+     top: 0; left: 0; right: 0; bottom: 0;
+     background: rgba(0,0,0,0.8);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 1rem;
+     z-index: 1000;
+   }
+   
+   .movie-details-content {
+     background: #27303f;
+     padding: 1rem;
+     border-radius: 8px;
+     max-width: 600px;
+     width: 100%;
+     max-height: 90vh;
+     overflow-y: auto;
+     position: relative;
+   }
+   
+   .close-button {
+     position: absolute;
+     top: 1rem;
+     right: 1rem;
+     background: transparent;
+     border: none;
+     font-size: 1.5rem;
+     color: #c0c0c0;
+     cursor: pointer;
+     transition: color 0.2s;
+   }
+   
+   .close-button:hover {
+     color: #fff;
+   }
+   
+   /* ==========================================================================
+      10. Responsive Breakpoints
+      ========================================================================== */
+   @media (max-width: 600px) {
+     .movies-grid {
+       grid-template-columns: repeat(2, 1fr);
+     }
+     nav ul {
+       flex-wrap: wrap;
+       justify-content: center;
+     }
+     .search-container {
+       width: 100%;
+       margin: 1rem 0 0;
+     }
+   }
+   

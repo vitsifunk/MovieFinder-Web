@@ -1,63 +1,82 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieFinder - Αναζήτηση Ταινιών</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <div class="logo">
-            <h1>MovieFinder</h1>
+            <h1>MyFlix</h1>
         </div>
+       
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Αναζήτηση ταινιών...">
+            <button id="search-button"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+    <div class="topnav">
         <nav>
             <ul>
-                <li><a href="#" class="active">Αρχική</a></li>
-                <li><a href="#">Δημοφιλείς</a></li>
-                <li><a href="#">Νέες Κυκλοφορίες</a></li>
-                <li><a href="#">Κατηγορίες</a></li>
+                <li><a href="#" class="nav-link active" data-section="featured">Αρχική</a></li>
+                <li><a href="#" class="nav-link"         data-section="popular">Δημοφιλείς</a></li>
+                <li><a href="#" class="nav-link"         data-section="new-releases">Νέες Κυκλοφορίες</a></li>
+                <li><a href="#" class="nav-link"         data-section="categories">Κατηγορίες</a></li>
+                <li><a href="#" class="nav-link"         data-section="favorites">⭐ Αγαπημένες</a></li>
             </ul>
         </nav>
-    </header>
-
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Αναζήτηση ταινιών...">
-        <button id="search-button"><i class="fas fa-search"></i></button>
     </div>
-
+    
     <main>
-        <section class="featured">
+        <section class="featured" id="featured-section">
             <h2>Προτεινόμενες Ταινίες</h2>
             <div class="movies-grid" id="featured-movies"></div>
+            <button class="load-more hidden" id="load-more-featured">Περισσότερα</button>
+            
         </section>
 
-        <section class="popular">
-            <h2>Δημοφιλείς Ταινίες</h2>
+        <section class="popular hidden" id="popular-section">
+            <h2>Δημοφιλείς</h2>
             <div class="movies-grid" id="popular-movies"></div>
+            <button class="load-more hidden" id="load-more-popular">Περισσότερα</button>
         </section>
 
-        <section class="new-releases">
+        <section class="new-releases hidden" id="new-releases-section">
             <h2>Νέες Κυκλοφορίες</h2>
-            <div class="movies-grid" id="new-movies"></div>
+            <div class="movies-grid" id="new-releases-movies"></div>
+            <button class="load-more hidden" id="load-more-new-releases">Περισσότερα</button>
+        </section>
+
+        <section class="categories hidden" id="categories-section">
+            <h2>Κατηγορίες</h2>
+            <div class="movies-grid" id="categories-container"></div>
+        </section>
+
+        <section class="favorites hidden" id="favorites-section">
+            <h2>Αγαπημένες</h2>
+            <div class="movies-grid" id="favorites-movies"></div>
+            <button class="load-more hidden" id="load-more-favorites">Περισσότερα</button>
+        </section>
+
+        <section class="search-results hidden" id="search-results-section">
+            <h2>Αποτελέσματα Αναζήτησης</h2>
+            <div class="movies-grid" id="search-results"></div>
+            <button class="load-more hidden" id="load-more-search-results">Περισσότερα</button>
         </section>
     </main>
 
-    <!-- Σελίδα λεπτομερειών ταινίας (αρχικά κρυμμένη) -->
-    <div class="movie-details" id="movie-details">
+    <div class="movie-details hidden" id="movie-details">
         <button class="close-button" id="close-details">×</button>
         <div class="movie-details-content" id="movie-details-content"></div>
     </div>
 
-    <!-- Περιοχή αποτελεσμάτων αναζήτησης (αρχικά κρυμμένη) -->
-    <section class="search-results" id="search-results-section">
-        <h2>Αποτελέσματα Αναζήτησης</h2>
-        <div class="movies-grid" id="search-results"></div>
-    </section>
-
     <footer>
-        <p>&copy; 2025 MovieFinder - Εφαρμογή Αναζήτησης Ταινιών</p>
+        <p>&copy; 2025 MovieFinder</p>
         <p>Powered by TMDB API</p>
     </footer>
 
